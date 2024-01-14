@@ -45,8 +45,20 @@ table {
 	border-spacing: 0;
 }
 
+// 추가
+html {
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+}
+
 section {
-	height: 100vh;
+	height: calc(100vh - 100px);
+	padding-top: 100px;
+	width: 100%;
+	max-width: 1200px;
+  margin: auto;
+  scroll-snap-align: center;
+  overflow: hidden;
 }
 `;
 
