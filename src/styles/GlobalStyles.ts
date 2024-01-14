@@ -44,6 +44,10 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+
+section {
+	height: 100vh;
+}
 `;
 
 export default GlobalStyles;
