@@ -54,6 +54,8 @@ const ButtonContainer = styled.div`
 const Link = styled(motion.a)`
   text-decoration: none;
   color: inherit;
+  opacity: 0.7;
+  font-weight: 900;
 `;
 
 export default Navbar;
