@@ -13,6 +13,9 @@ const App = () => {
   );
 };
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  max-width: 1200px;
+  margin: auto;
+`;
 
 export default App;
