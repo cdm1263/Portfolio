@@ -62,7 +62,7 @@ html {
 }
 
 section {
-	height: calc(100vh - 100px);
+	height: calc(100vh - 150px);
 	padding-top: 100px;
 	width: 100%;
 	max-width: 1200px;
