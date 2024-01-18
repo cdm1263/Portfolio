@@ -1,6 +1,13 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+
    html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -49,6 +56,9 @@ table {
 html {
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
+	background: linear-gradient(#1E1E1E,#2d2d2d) ;
+	font-family: Pretendard-Regular;
+	color: #e0ffff;
 }
 
 section {
