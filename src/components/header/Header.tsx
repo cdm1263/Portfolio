@@ -1,29 +1,41 @@
 import styled from "styled-components";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+import { header } from "../../lib/variants";
 
 const Header = () => {
+  const { textVariant } = header;
+  const ref = useRef(null);
+  const isInView = useInView(ref);
+
   return (
-    <Wrapper>
-      <Intro>Frontend Developer</Intro>
-      <Title>Dongmin Portfolio</Title>
+    <Wrapper
+      ref={ref}
+      variants={textVariant}
+      initial="initial"
+      animate={isInView && "animate"}
+    >
+      <Title variants={textVariant}> Dongmin</Title>
+      <Intro variants={textVariant}>Frontend Developer Portfolio</Intro>
     </Wrapper>
   );
 };
 
-const Wrapper = styled.section`
+const Wrapper = styled(motion.section)`
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-content: center;
-  gap: 30px;
+  gap: 80px;
 `;
 
-const Intro = styled.h2`
-  font-size: 70px;
+const Title = styled(motion.h1)`
+  font-size: 150px;
   text-align: center;
 `;
 
-const Title = styled.h1`
-  font-size: 60px;
+const Intro = styled(motion.h2)`
+  font-size: 30px;
   text-align: center;
 `;
 
