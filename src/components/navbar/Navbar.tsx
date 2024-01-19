@@ -13,6 +13,7 @@ const Navbar = ({ toggleTheme, isDarkMode }: NavBarProps) => {
   const { tap, linkVariant } = link;
   const { titleVariant } = title;
   const { navVariant } = nav;
+  const links = ["home", "about", "projects", "contact"];
 
   return (
     <Wrapper>
@@ -21,42 +22,18 @@ const Navbar = ({ toggleTheme, isDarkMode }: NavBarProps) => {
           Dongmin's Portfolio
         </Title>
         <ButtonContainer>
-          <Link
-            variants={linkVariant}
-            initial="initial"
-            animate="animate"
-            whileTap={tap}
-            href="/"
-          >
-            Home
-          </Link>
-          <Link
-            variants={linkVariant}
-            initial="initial"
-            animate="animate"
-            whileTap={tap}
-            href="#about"
-          >
-            About
-          </Link>
-          <Link
-            variants={linkVariant}
-            initial="initial"
-            animate="animate"
-            whileTap={tap}
-            href="#projects"
-          >
-            Projects
-          </Link>
-          <Link
-            variants={linkVariant}
-            initial="initial"
-            animate="animate"
-            whileTap={tap}
-            href="#contact"
-          >
-            Contact
-          </Link>
+          {links.map((link) => (
+            <Link
+              key={link}
+              variants={linkVariant}
+              initial="initial"
+              animate="animate"
+              whileTap={tap}
+              href={link === "home" ? "/" : `#${link}`}
+            >
+              {link}
+            </Link>
+          ))}
           <ThemeToggle
             variants={linkVariant}
             initial="initial"
@@ -79,6 +56,7 @@ const Wrapper = styled.nav`
   height: 150px;
   position: fixed;
   opacity: 0.7;
+  z-index: 1;
 `;
 
 const Container = styled(motion.div)`
@@ -111,6 +89,7 @@ const Link = styled(motion.a)`
   text-decoration: none;
   border-radius: 8px;
   color: ${({ theme }) => theme.text[200]};
+  font-size: 20px;
   font-weight: 900;
   box-sizing: border-box;
 
