@@ -56,4 +56,33 @@ const nav = {
   },
 };
 
-export { header, link, title, nav };
+const chevron = {
+  wrapperVariant: {
+    initial: {
+      opacity: 0,
+    },
+    animate: {
+      opacity: 1,
+      y: "200px",
+      transition: {
+        opacity: { delay: 2.2, duration: 1 },
+        staggerChildren: 0.2,
+      },
+    },
+  },
+  iconVariant: {
+    initial: { y: -10 },
+    animate: {
+      opacity: [0.9, 1, 0.7, 0.5, 0.7, 1],
+      y: [0, 10, 0],
+      transition: {
+        duration: 1,
+        repeat: Infinity,
+        repeatDelay: 1,
+        ease: "easeInOut",
+      },
+    },
+  },
+};
+
+export { header, link, title, nav, chevron };
