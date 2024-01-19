@@ -56,9 +56,13 @@ table {
 html {
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
-	
 	font-family: Pretendard-Regular;
-	
+	background: linear-gradient(
+      ${({ theme }) => theme.bg[100]},
+      ${({ theme }) => theme.bg[200]}
+    );
+  color: ${({ theme }) => theme.text[100]};
+  transition: background 0.5s, color 0.5s;
 }
 
 section {
