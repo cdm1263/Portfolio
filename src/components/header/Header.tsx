@@ -31,6 +31,7 @@ const Wrapper = styled(motion.section)`
   justify-content: center;
   align-content: center;
   gap: 80px;
+  position: relative;
 `;
 
 const Container = styled(motion.div)`
