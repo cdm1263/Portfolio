@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { header } from "../../lib/variants";
+import Chevrons from "./Chevrons";
 
 const Header = () => {
   const { textVariant } = header;
@@ -9,19 +10,30 @@ const Header = () => {
   const isInView = useInView(ref);
 
   return (
-    <Wrapper
-      ref={ref}
-      variants={textVariant}
-      initial="initial"
-      animate={isInView && "animate"}
-    >
-      <Title variants={textVariant}>Dongmin</Title>
-      <Intro variants={textVariant}>Frontend Developer Portfolio</Intro>
+    <Wrapper>
+      <Container
+        ref={ref}
+        variants={textVariant}
+        initial="initial"
+        animate={isInView && "animate"}
+      >
+        <Title variants={textVariant}>Dongmin</Title>
+        <Intro variants={textVariant}>Frontend Developer Portfolio</Intro>
+      </Container>
+      <Chevrons />
     </Wrapper>
   );
 };
 
 const Wrapper = styled(motion.section)`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: center;
+  gap: 80px;
+`;
+
+const Container = styled(motion.div)`
   display: flex;
   flex-direction: column;
   justify-content: center;
