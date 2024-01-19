@@ -10,7 +10,7 @@ const header = {
 };
 
 const link = {
-  hover: { opacity: 1, transition: { duration: 0.1 } },
+  // hover: { opacity: 1, transition: { duration: 0.1 } },
   tap: { backgroundColor: "#454545" },
   linkVariant: {
     initial: { opacity: 0, y: -10, display: "none" },
