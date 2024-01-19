@@ -4,3 +4,7 @@ export interface ProjectTypes {
   skills: string[];
   desc: string;
 }
+
+export interface DarkModeTypes {
+  $isDarkMode: boolean;
+}
