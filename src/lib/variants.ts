@@ -40,14 +40,14 @@ const nav = {
     animate: {
       flex: 1,
       opacity: 1,
-      y: 0,
+      y: [-100, 20, 0],
       width: "100%",
-      padding: "0 50px",
+      padding: ["0", "0 50px"],
       transition: {
-        y: { duration: 0.3 },
+        y: { duration: 0.5 },
         flex: {
           duration: 1.5,
-          delay: 0.3,
+          delay: 0.4,
           ease: "easeInOut",
         },
         opacity: { duration: 1.3, ease: "easeInOut" },
