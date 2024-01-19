@@ -21,7 +21,7 @@ const App = () => {
     <ThemeProvider theme={currentTheme}>
       <GlobalStyles />
       <Wrapper>
-        <Navbar toggleTheme={toggletheme} />
+        <Navbar toggleTheme={toggletheme} isDarkMode={isDarkMode} />
         <Header />
         <About />
         <Projects />
