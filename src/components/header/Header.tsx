@@ -15,7 +15,7 @@ const Header = () => {
       initial="initial"
       animate={isInView && "animate"}
     >
-      <Title variants={textVariant}> Dongmin</Title>
+      <Title variants={textVariant}>Dongmin</Title>
       <Intro variants={textVariant}>Frontend Developer Portfolio</Intro>
     </Wrapper>
   );
@@ -31,6 +31,7 @@ const Wrapper = styled(motion.section)`
 
 const Title = styled(motion.h1)`
   font-size: 150px;
+  font-weight: 800;
   text-align: center;
 `;
 
