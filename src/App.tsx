@@ -4,16 +4,30 @@ import Navbar from "./components/navbar/Navbar";
 import Projects from "./components/projects/Projects";
 import Contact from "./components/contact/Contact";
 import Header from "./components/header/Header";
+import { useState } from "react";
+import { ThemeProvider } from "styled-components";
+import theme from "./styles/theme.ts";
+import GlobalStyles from "./styles/GlobalStyles.ts";
 
 const App = () => {
+  const [isDarkMode, setIsDarkMode] = useState<boolean>(true);
+  const currentTheme = isDarkMode ? theme.darkTheme : theme.lightTheme;
+
+  const toggletheme = () => {
+    setIsDarkMode((prev) => !prev);
+  };
+
   return (
-    <Wrapper>
-      <Navbar />
-      <Header />
-      <About />
-      <Projects />
-      <Contact />
-    </Wrapper>
+    <ThemeProvider theme={currentTheme}>
+      <GlobalStyles />
+      <Wrapper>
+        <Navbar toggleTheme={toggletheme} />
+        <Header />
+        <About />
+        <Projects />
+        <Contact />
+      </Wrapper>
+    </ThemeProvider>
   );
 };
 
