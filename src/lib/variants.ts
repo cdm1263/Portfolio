@@ -4,13 +4,12 @@ const header = {
     animate: {
       opacity: 1,
       y: 0,
-      transition: { duration: 1, staggerChildren: 1.3 },
+      transition: { duration: 1 },
     },
   },
 };
 
 const link = {
-  // hover: { opacity: 1, transition: { duration: 0.1 } },
   tap: { backgroundColor: "#454545" },
   linkVariant: {
     initial: { opacity: 0, y: -10, display: "none" },
@@ -46,7 +45,11 @@ const nav = {
       padding: "0 50px",
       transition: {
         y: { duration: 0.3 },
-        flex: { duration: 1.5, delay: 0.3, ease: "easeInOut" },
+        flex: {
+          duration: 1.5,
+          delay: 0.3,
+          ease: "easeInOut",
+        },
         opacity: { duration: 1.3, ease: "easeInOut" },
       },
     },
