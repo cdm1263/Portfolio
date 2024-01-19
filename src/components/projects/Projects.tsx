@@ -35,7 +35,7 @@ const Wrapper = styled(motion.div)`
 
 const ProgressBar = styled(motion.div)`
   position: sticky;
-  background-color: #fff;
+  background-color: ${({ theme }) => theme.text[100]};
   height: 10px;
   width: 100%;
   max-width: 1200px;
