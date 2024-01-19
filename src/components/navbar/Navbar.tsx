@@ -1,9 +1,16 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import { link, nav, title } from "../../lib/variants";
+import { IoMoon, IoSunny } from "react-icons/io5";
+import { DarkModeTypes } from "../../lib/types";
 
-const Navbar = () => {
-  const { hover, tap, linkVariant } = link;
+interface NavBarProps {
+  toggleTheme: () => void;
+  isDarkMode: boolean;
+}
+
+const Navbar = ({ toggleTheme, isDarkMode }: NavBarProps) => {
+  const { tap, linkVariant } = link;
   const { titleVariant } = title;
   const { navVariant } = nav;
 
@@ -16,7 +23,6 @@ const Navbar = () => {
         <ButtonContainer>
           <Link
             variants={linkVariant}
-            whileHover={hover}
             initial="initial"
             animate="animate"
             whileTap={tap}
@@ -26,7 +32,6 @@ const Navbar = () => {
           </Link>
           <Link
             variants={linkVariant}
-            whileHover={hover}
             initial="initial"
             animate="animate"
             whileTap={tap}
@@ -36,7 +41,6 @@ const Navbar = () => {
           </Link>
           <Link
             variants={linkVariant}
-            whileHover={hover}
             initial="initial"
             animate="animate"
             whileTap={tap}
@@ -46,7 +50,6 @@ const Navbar = () => {
           </Link>
           <Link
             variants={linkVariant}
-            whileHover={hover}
             initial="initial"
             animate="animate"
             whileTap={tap}
@@ -54,6 +57,15 @@ const Navbar = () => {
           >
             Contact
           </Link>
+          <ThemeToggle
+            variants={linkVariant}
+            initial="initial"
+            animate="animate"
+            onClick={toggleTheme}
+          >
+            <Moon $isDarkMode={isDarkMode} />
+            <Sun $isDarkMode={isDarkMode} />
+          </ThemeToggle>
         </ButtonContainer>
       </Container>
     </Wrapper>
@@ -89,6 +101,7 @@ const Title = styled(motion.h1)`
 
 const ButtonContainer = styled(motion.div)`
   display: flex;
+  align-items: center;
   gap: 10px;
 `;
 
@@ -96,11 +109,47 @@ const Link = styled(motion.a)`
   display: block;
   padding: 15px 20px;
   text-decoration: none;
-  color: inherit;
   border-radius: 8px;
-  opacity: 0.7;
+  color: ${({ theme }) => theme.text[200]};
   font-weight: 900;
   box-sizing: border-box;
+
+  &:hover {
+    color: ${({ theme }) => theme.text[100]};
+    transition: color 0.5s;
+  }
+`;
+
+const ThemeToggle = styled(motion.button)`
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: transparent;
+  color: ${({ theme }) => theme.text[200]};
+  cursor: pointer;
+
+  &:hover {
+    color: ${({ theme }) => theme.text[100]};
+    transition: color 0.5s;
+  }
+
+  &:focus {
+    outline: none;
+  }
+`;
+
+const Moon = styled(IoMoon)<DarkModeTypes>`
+  opacity: ${({ $isDarkMode }) => ($isDarkMode ? 0 : 1)};
+  transform: translate(-50%, -50%) scale(2);
+  transition: opacity 0.2s;
+  position: absolute;
+`;
+
+const Sun = styled(IoSunny)<DarkModeTypes>`
+  opacity: ${({ $isDarkMode }) => ($isDarkMode ? 1 : 0)};
+  transform: translate(-50%, -50%) scale(2);
+  transition: opacity 0.3s;
+  position: absolute;
 `;
 
 export default Navbar;
