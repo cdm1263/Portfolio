@@ -25,6 +25,11 @@ const Wrapper = styled(motion.div)`
   width: fit-content;
   flex-direction: column;
   align-self: center;
+  position: absolute;
+  right: 0;
+  left: 0;
+  margin: auto;
+  bottom: 10%;
 `;
 
 const ChevronIcon = styled(motion.i)`

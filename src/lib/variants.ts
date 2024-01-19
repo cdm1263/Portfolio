@@ -63,7 +63,6 @@ const chevron = {
     },
     animate: {
       opacity: 1,
-      y: "200px",
       transition: {
         opacity: { delay: 2.2, duration: 1 },
         staggerChildren: 0.2,
