@@ -56,9 +56,9 @@ table {
 html {
   scroll-snap-type: y mandatory;
   scroll-behavior: smooth;
-	background: linear-gradient(#1E1E1E,#2d2d2d) ;
+	
 	font-family: Pretendard-Regular;
-	color: #e0ffff;
+	
 }
 
 section {
