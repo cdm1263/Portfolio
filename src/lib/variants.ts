@@ -1,9 +1,9 @@
 const header = {
   textVariant: {
-    initial: { opacity: 0, y: "-50px" },
+    initial: { opacity: 0, y: "-100px" },
     animate: {
       opacity: 1,
-      y: 0,
+      y: "-50px",
       transition: { duration: 1 },
     },
   },
