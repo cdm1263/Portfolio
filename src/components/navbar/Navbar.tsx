@@ -13,7 +13,7 @@ const Navbar = ({ toggleTheme, isDarkMode }: NavBarProps) => {
   const { tap, linkVariant } = link;
   const { titleVariant } = title;
   const { navVariant } = nav;
-  const links = ["home", "about", "projects", "contact"];
+  const links = ["Home", "About", "Projects", "Contact"];
 
   return (
     <Wrapper>
@@ -29,7 +29,7 @@ const Navbar = ({ toggleTheme, isDarkMode }: NavBarProps) => {
               initial="initial"
               animate="animate"
               whileTap={tap}
-              href={link === "home" ? "/" : `#${link}`}
+              href={link === "Home" ? "/" : `#${link.toLowerCase()}`}
             >
               {link}
             </Link>
