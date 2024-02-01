@@ -74,6 +74,10 @@ section {
   scroll-snap-align: center;
   overflow: hidden;
 }
+
+textarea {
+	font-family: 'Pretendard-Regular'
+}
 `;
 
 export default GlobalStyles;
