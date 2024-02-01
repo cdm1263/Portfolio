@@ -37,7 +37,7 @@ const ProgressBar = styled(motion.div)`
   position: sticky;
   background-color: ${({ theme }) => theme.text[100]};
   height: 10px;
-  width: 100%;
+  width: 90%;
   max-width: 1200px;
   top: 160px;
   left: 0;
