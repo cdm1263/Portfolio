@@ -3,6 +3,8 @@ export interface ProjectTypes {
   title: string;
   term: string;
   skills: string[];
+  url: string;
+  github: string;
   desc: string;
 }
 
