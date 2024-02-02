@@ -57,7 +57,6 @@ const InputField = ({ name, type, label }: InputFieldProps) => {
 };
 
 const FormContents = styled.div`
-  flex: 1;
   position: relative;
 `;
 
