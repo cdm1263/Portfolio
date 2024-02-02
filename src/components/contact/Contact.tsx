@@ -4,7 +4,18 @@ import InputField from "./InputField";
 const Contact = () => {
   return (
     <Wrapper id="contact">
-      <Title>Contact</Title>
+      <Intro>
+        <Title>Contact</Title>
+        <ContactInfos>
+          <Info>010-1111-2222</Info>
+          <Info>cdm1263@gmail.com</Info>
+          <SNS>
+            <Icon>Github</Icon>
+            <Icon>Linkedin</Icon>
+            <Icon>Careerly</Icon>
+          </SNS>
+        </ContactInfos>
+      </Intro>
       <Form>
         <InputContainer>
           <InputField name="name" type="text" label="Name" />
@@ -17,7 +28,17 @@ const Contact = () => {
   );
 };
 
-const Wrapper = styled.section``;
+const Wrapper = styled.section`
+  display: flex;
+`;
+
+const Intro = styled.div`
+  width: 100%;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
 
 const Title = styled.h2`
   color: ${({ theme }) => theme.text[100]};
@@ -25,7 +46,20 @@ const Title = styled.h2`
   margin-bottom: 20px;
 `;
 
+const ContactInfos = styled.div`
+  flex: 1;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+`;
+const Info = styled.span``;
+
+const SNS = styled.div``;
+
+const Icon = styled.i``;
+
 const Form = styled.form`
+  flex: 1;
   display: flex;
   flex-direction: column;
   gap: 20px;
