@@ -52,7 +52,7 @@ const Navbar = ({ toggleTheme, isDarkMode }: NavBarProps) => {
 const Wrapper = styled.nav`
   display: flex;
   align-items: center;
-  width: 100%;
+  width: 95%;
   height: 150px;
   position: fixed;
   opacity: 0.7;
