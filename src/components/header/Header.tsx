@@ -32,6 +32,7 @@ const Wrapper = styled(motion.section)`
   align-content: center;
   gap: 80px;
   position: relative;
+  font-family: "Flipahaus-V2";
 `;
 
 const Container = styled(motion.div)`
