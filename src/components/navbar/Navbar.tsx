@@ -52,11 +52,12 @@ const Navbar = ({ toggleTheme, isDarkMode }: NavBarProps) => {
 const Wrapper = styled.nav`
   display: flex;
   align-items: center;
-  width: 100vw;
+  width: 100%;
   height: 150px;
   position: fixed;
   opacity: 0.7;
   z-index: 1;
+  font-family: "Flipahaus-V2";
 `;
 
 const Container = styled(motion.div)`
