@@ -73,7 +73,7 @@ html {
 section {
 	height: calc(100vh - 150px);
 	padding-top: 150px;
-	width: 100%;
+	width: 92%;
 	max-width: 1200px;
   margin: auto;
   scroll-snap-align: center;
