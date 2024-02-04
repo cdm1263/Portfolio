@@ -33,6 +33,7 @@ const InputField = ({ name, type, label }: InputFieldProps) => {
           id={name}
           name={name}
           rows={4}
+          spellCheck={false}
           onFocus={handleFocus}
           onBlur={handleBlur}
           onChange={(event) => {
@@ -105,6 +106,7 @@ const Textarea = styled.textarea`
   width: 100%;
   padding: 18px;
   outline: none;
+  resize: none;
   font-size: 20px;
   border: 1px solid ${({ theme }) => theme.text[200]};
   border-radius: 6px;
