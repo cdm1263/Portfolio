@@ -14,7 +14,7 @@ const About = () => {
           개발자와의 <Point>유연한 소통</Point>과 동시에 사용자에게{" "}
           <Point>최상의 경험</Point>을 제공하는,
           <br />
-          <Point>징검다리</Point> 같은 개발자를 목표로 하고 있습니다. <br />
+          <Point>징검다리</Point>같은 개발자를 목표로 하고 있습니다. <br />
           개발을 단순한 기술 습득이나 적용으로 여기지 않고, 그 자체를 즐기고
           있습니다.
         </Introduction>
@@ -90,8 +90,8 @@ const Icon = styled.a`
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  padding: 5px;
-  border-radius: 7px;
+  padding: 10px;
+  border-radius: 50%;
   transition: background-color 0.2s ease;
 
   &::before {
@@ -107,6 +107,12 @@ const Icon = styled.a`
     transition: opacity 0.2s ease, visibility 0.3s ease;
   }
 
+  svg {
+    color: ${({ theme }) => theme.text[200]};
+    width: 40px;
+    height: 40px;
+  }
+
   &:hover {
     background-color: ${({ theme }) => theme.bg[300]};
 
@@ -118,12 +124,6 @@ const Icon = styled.a`
     svg {
       color: ${({ theme }) => theme.accent[200]};
     }
-  }
-
-  svg {
-    color: ${({ theme }) => theme.text[200]};
-    width: 40px;
-    height: 40px;
   }
 `;
 
