@@ -8,13 +8,14 @@ import { useEffect, useState } from "react";
 import { ThemeProvider } from "styled-components";
 import theme from "./styles/theme.ts";
 import GlobalStyles from "./styles/GlobalStyles.ts";
+import media from "./styles/media.ts";
 
 const App = () => {
   const storedDarkMode = localStorage.getItem("isDarkMode");
   const [isDarkMode, setIsDarkMode] = useState<boolean>(
     storedDarkMode !== null ? JSON.parse(storedDarkMode) : true
   );
-  const currentTheme = isDarkMode ? theme.darkTheme : theme.lightTheme;
+  const colors = isDarkMode ? theme.darkTheme : theme.lightTheme;
 
   const toggletheme = () => {
     setIsDarkMode((prev) => !prev);
@@ -25,7 +26,7 @@ const App = () => {
   }, [isDarkMode]);
 
   return (
-    <ThemeProvider theme={currentTheme}>
+    <ThemeProvider theme={{ colors, media }}>
       <GlobalStyles />
       <Wrapper>
         <Navbar toggleTheme={toggletheme} isDarkMode={isDarkMode} />
