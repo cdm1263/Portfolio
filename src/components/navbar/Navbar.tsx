@@ -70,7 +70,7 @@ const Container = styled(motion.div)`
   max-width: 1200px;
   align-items: center;
   box-sizing: border-box;
-  background-color: ${({ theme }) => theme.bg[300]};
+  background-color: ${({ theme }) => theme.colors.bg[300]};
   justify-content: space-between;
 `;
 
@@ -89,13 +89,13 @@ const Link = styled(motion.a)`
   padding: 15px 20px;
   text-decoration: none;
   border-radius: 8px;
-  color: ${({ theme }) => theme.text[200]};
+  color: ${({ theme }) => theme.colors.text[200]};
   font-size: 20px;
   font-weight: 900;
   box-sizing: border-box;
 
   &:hover {
-    color: ${({ theme }) => theme.text[100]};
+    color: ${({ theme }) => theme.colors.text[100]};
     transition: color 0.5s;
   }
 `;
@@ -105,11 +105,11 @@ const ThemeToggle = styled(motion.button)`
   height: 30px;
   border: none;
   background-color: transparent;
-  color: ${({ theme }) => theme.text[200]};
+  color: ${({ theme }) => theme.colors.text[200]};
   cursor: pointer;
 
   &:hover {
-    color: ${({ theme }) => theme.text[100]};
+    color: ${({ theme }) => theme.colors.text[100]};
     transition: color 0.5s;
   }
 

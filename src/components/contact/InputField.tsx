@@ -64,9 +64,9 @@ const FormContents = styled.div`
 const Label = styled.label<{ $isFocused: boolean; $isFilled: boolean }>`
   display: block;
   color: ${({ $isFocused, theme }) =>
-    $isFocused ? theme.accent[100] : theme.text[200]};
+    $isFocused ? theme.colors.accent[100] : theme.colors.text[200]};
   padding: 0 10px;
-  background-color: ${({ theme }) => theme.bg[200]};
+  background-color: ${({ theme }) => theme.colors.bg[200]};
   position: absolute;
   font-size: 20px;
   left: 10px;
@@ -86,19 +86,19 @@ const Input = styled.input`
   width: 100%;
   padding: 18px;
   outline: none;
-  border: 1px solid ${({ theme }) => theme.text[200]};
+  border: 1px solid ${({ theme }) => theme.colors.text[200]};
   border-radius: 4px;
   background-color: transparent;
-  color: ${({ theme }) => theme.text[100]};
+  color: ${({ theme }) => theme.colors.text[100]};
   box-sizing: border-box;
   font-size: 20px;
 
   &:hover {
-    border-color: ${({ theme }) => theme.text[100]};
+    border-color: ${({ theme }) => theme.colors.text[100]};
   }
 
   &:focus {
-    border-color: ${({ theme }) => theme.accent[100]};
+    border-color: ${({ theme }) => theme.colors.accent[100]};
   }
 `;
 
@@ -108,18 +108,18 @@ const Textarea = styled.textarea`
   outline: none;
   resize: none;
   font-size: 20px;
-  border: 1px solid ${({ theme }) => theme.text[200]};
+  border: 1px solid ${({ theme }) => theme.colors.text[200]};
   border-radius: 6px;
   background-color: transparent;
-  color: ${({ theme }) => theme.text[100]};
+  color: ${({ theme }) => theme.colors.text[100]};
   box-sizing: border-box;
 
   &:hover {
-    border-color: ${({ theme }) => theme.text[100]};
+    border-color: ${({ theme }) => theme.colors.text[100]};
   }
 
   &:focus {
-    border-color: ${({ theme }) => theme.accent[100]};
+    border-color: ${({ theme }) => theme.colors.accent[100]};
   }
 `;
 

@@ -68,7 +68,7 @@ const Title = styled.h2`
 const Point = styled.strong`
   font-weight: 900;
   font-size: 1.3em;
-  color: ${({ theme }) => theme.accent[100]};
+  color: ${({ theme }) => theme.colors.accent[100]};
 `;
 
 const Introduction = styled.p`
@@ -98,8 +98,8 @@ const Icon = styled.a`
     content: attr(data-info);
     position: absolute;
     top: 70px;
-    background-color: ${({ theme }) => theme.bg[300]};
-    color: ${({ theme }) => theme.text[200]};
+    background-color: ${({ theme }) => theme.colors.bg[300]};
+    color: ${({ theme }) => theme.colors.text[200]};
     padding: 5px;
     border-radius: 5px;
     opacity: 0;
@@ -108,13 +108,13 @@ const Icon = styled.a`
   }
 
   svg {
-    color: ${({ theme }) => theme.text[200]};
+    color: ${({ theme }) => theme.colors.text[200]};
     width: 40px;
     height: 40px;
   }
 
   &:hover {
-    background-color: ${({ theme }) => theme.bg[300]};
+    background-color: ${({ theme }) => theme.colors.bg[300]};
 
     &::before {
       visibility: visible;
@@ -122,7 +122,7 @@ const Icon = styled.a`
     }
 
     svg {
-      color: ${({ theme }) => theme.accent[200]};
+      color: ${({ theme }) => theme.colors.accent[200]};
     }
   }
 `;

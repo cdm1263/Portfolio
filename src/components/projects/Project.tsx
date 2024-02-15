@@ -113,7 +113,7 @@ const Title = styled.h1`
 `;
 
 const Term = styled.h2`
-  color: ${({ theme }) => theme.text[200]};
+  color: ${({ theme }) => theme.colors.text[200]};
   font-size: 25px;
 `;
 
@@ -176,7 +176,7 @@ const InfoContent = styled.h3`
   flex-wrap: wrap;
 
   a {
-    color: ${({ theme }) => theme.primary[200]};
+    color: ${({ theme }) => theme.colors.primary[200]};
   }
 `;
 

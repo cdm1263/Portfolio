@@ -63,10 +63,10 @@ html {
   scroll-behavior: smooth;
 	font-family: Pretendard-Regular;
 	background: linear-gradient(
-      ${({ theme }) => theme.bg[100]},
-      ${({ theme }) => theme.bg[200]}
+      ${({ theme }) => theme.colors.bg[100]},
+      ${({ theme }) => theme.colors.bg[200]}
     );
-  color: ${({ theme }) => theme.text[100]};
+  color: ${({ theme }) => theme.colors.text[100]};
   transition: background 0.5s, color 0.5s;
 }
 

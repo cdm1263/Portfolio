@@ -38,7 +38,7 @@ const Wrapper = styled.section`
 `;
 
 const Title = styled.h2`
-  color: ${({ theme }) => theme.text[100]};
+  color: ${({ theme }) => theme.colors.text[100]};
   font-size: 40px;
   margin-bottom: 20px;
   font-weight: 800;
@@ -87,10 +87,10 @@ const InputContainer = styled.div`
 `;
 
 const SubmitButton = styled.button`
-  background-color: ${({ theme }) => theme.accent[200]};
+  background-color: ${({ theme }) => theme.colors.accent[200]};
   width: 200px;
   align-self: flex-end;
-  color: ${({ theme }) => theme.text[100]};
+  color: ${({ theme }) => theme.colors.text[100]};
   padding: 10px 15px;
   border: none;
   border-radius: 4px;
@@ -98,7 +98,7 @@ const SubmitButton = styled.button`
   transition: all 0.15s ease;
 
   &:hover {
-    background-color: ${({ theme }) => theme.accent[100]};
+    background-color: ${({ theme }) => theme.colors.accent[100]};
     width: 200px;
   }
 `;
