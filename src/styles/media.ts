@@ -5,9 +5,8 @@ interface Sizes {
 }
 
 const sizes: Sizes = {
-  mobile: 320,
-  tablet: 768,
-  laptop: 1024,
+  mobile: 768,
+  tablet: 1024,
   desktop: 1280,
 };
 
