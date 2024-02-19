@@ -34,15 +34,15 @@ const title = {
   },
 };
 
-const nav = {
-  navVariant: {
+const generateNavVariant = (paddingValue: string) => {
+  return {
     initial: { flex: 0, y: "-200px", width: "80px", padding: 0, opacity: 0.2 },
     animate: {
       flex: 1,
       opacity: 1,
       y: [-100, 20, 0],
       width: "100%",
-      padding: ["0", "0 50px"],
+      padding: ["0", `0 ${paddingValue}`],
       transition: {
         y: { duration: 0.5 },
         flex: {
@@ -53,7 +53,12 @@ const nav = {
         opacity: { duration: 1.3, ease: "easeInOut" },
       },
     },
-  },
+  };
+};
+
+const nav = {
+  navVariant: generateNavVariant("50px"),
+  mobileNavVariant: generateNavVariant("30px"),
 };
 
 const chevron = {
