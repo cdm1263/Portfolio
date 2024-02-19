@@ -1,8 +1,10 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { motion } from "framer-motion";
-import { link, nav, title } from "../../lib/variants";
-import { IoMoon, IoSunny } from "react-icons/io5";
-import { DarkModeTypes } from "../../lib/types";
+import { nav, title } from "../../lib/variants";
+import NavLink from "./NavLink";
+import useCalculateInnerWidth from "../../hooks/useCalculateInnerWidth";
+import Sidebar from "./Sidebar";
+import { animateScroll as scroll } from "react-scroll";
 
 interface NavBarProps {
   toggleTheme: () => void;
@@ -10,40 +12,32 @@ interface NavBarProps {
 }
 
 const Navbar = ({ toggleTheme, isDarkMode }: NavBarProps) => {
-  const { tap, linkVariant } = link;
+  const innerWidth = useCalculateInnerWidth();
   const { titleVariant } = title;
-  const { navVariant } = nav;
-  const links = ["Home", "About", "Projects", "Contact"];
+  const { mobileNavVariant, navVariant } = nav;
 
   return (
     <Wrapper>
-      <Container variants={navVariant} initial="initial" animate="animate">
-        <Title variants={titleVariant} initial="initial" animate="animate">
+      <Container
+        variants={innerWidth <= 768 ? mobileNavVariant : navVariant}
+        initial="initial"
+        animate="animate"
+      >
+        <Title
+          variants={titleVariant}
+          initial="initial"
+          animate="animate"
+          onClick={() => {
+            scroll.scrollToTop({ smooth: true, duration: 500 });
+          }}
+        >
           Dongmin's Portfolio
         </Title>
-        <ButtonContainer>
-          {links.map((link) => (
-            <Link
-              key={link}
-              variants={linkVariant}
-              initial="initial"
-              animate="animate"
-              whileTap={tap}
-              href={link === "Home" ? "/" : `#${link.toLowerCase()}`}
-            >
-              {link}
-            </Link>
-          ))}
-          <ThemeToggle
-            variants={linkVariant}
-            initial="initial"
-            animate="animate"
-            onClick={toggleTheme}
-          >
-            <Moon $isDarkMode={isDarkMode} />
-            <Sun $isDarkMode={isDarkMode} />
-          </ThemeToggle>
-        </ButtonContainer>
+        {innerWidth <= 768 ? (
+          <Sidebar toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
+        ) : (
+          <NavLink toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
+        )}
       </Container>
     </Wrapper>
   );
@@ -65,71 +59,32 @@ const Container = styled(motion.div)`
   margin: auto;
   display: flex;
   flex: 1;
-  padding: 0 50px;
   border-radius: 50px;
   max-width: 1200px;
   align-items: center;
   box-sizing: border-box;
   background-color: ${({ theme }) => theme.colors.bg[300]};
   justify-content: space-between;
+
+  ${({ theme }) =>
+    theme.media.mobile(css`
+      height: 70px;
+    `)}
 `;
 
 const Title = styled(motion.h1)`
   font-size: 30px;
-`;
-
-const ButtonContainer = styled(motion.div)`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-`;
-
-const Link = styled(motion.a)`
-  display: block;
-  padding: 15px 20px;
-  text-decoration: none;
-  border-radius: 8px;
-  color: ${({ theme }) => theme.colors.text[200]};
-  font-size: 20px;
-  font-weight: 900;
-  box-sizing: border-box;
-
-  &:hover {
-    color: ${({ theme }) => theme.colors.text[100]};
-    transition: color 0.5s;
-  }
-`;
-
-const ThemeToggle = styled(motion.button)`
-  width: 30px;
-  height: 30px;
-  border: none;
-  background-color: transparent;
-  color: ${({ theme }) => theme.colors.text[200]};
   cursor: pointer;
+  transition: color 0.2s ease;
 
   &:hover {
-    color: ${({ theme }) => theme.colors.text[100]};
-    transition: color 0.5s;
+    color: ${({ theme }) => theme.colors.accent[100]};
   }
 
-  &:focus {
-    outline: none;
-  }
-`;
-
-const Moon = styled(IoMoon)<DarkModeTypes>`
-  opacity: ${({ $isDarkMode }) => ($isDarkMode ? 0 : 1)};
-  transform: translate(-50%, -50%) scale(2);
-  transition: opacity 0.2s;
-  position: absolute;
-`;
-
-const Sun = styled(IoSunny)<DarkModeTypes>`
-  opacity: ${({ $isDarkMode }) => ($isDarkMode ? 1 : 0)};
-  transform: translate(-50%, -50%) scale(2);
-  transition: opacity 0.3s;
-  position: absolute;
+  ${({ theme }) =>
+    theme.media.mobile(css`
+      font-size: 22px;
+    `)}
 `;
 
 export default Navbar;
