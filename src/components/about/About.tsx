@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { IoMail } from "react-icons/io5";
 
@@ -46,6 +46,11 @@ const About = () => {
 const Wrapper = styled.section`
   display: flex;
   align-items: center;
+
+  ${({ theme }) =>
+    theme.media.mobile(css`
+      flex-direction: column-reverse;
+    `)}
 `;
 
 const IntroContainer = styled.div`
@@ -53,16 +58,33 @@ const IntroContainer = styled.div`
   flex-direction: column;
   gap: 40px;
   white-space: nowrap;
+
+  ${({ theme }) =>
+    theme.media.mobile(css`
+      align-items: center;
+      text-align: center;
+      gap: 20px;
+      white-space: normal;
+      padding: 20px 0;
+    `)}
 `;
 
 const ImageContainer = styled.div`
+  height: 100%;
+  width: 100%;
   display: flex;
   flex: 1;
+  background-color: yellowgreen;
 `;
 
 const Title = styled.h2`
   font-size: 50px;
   line-height: 140%;
+
+  ${({ theme }) =>
+    theme.media.mobile(css`
+      font-size: 25px;
+    `)}
 `;
 
 const Point = styled.strong`
@@ -75,6 +97,11 @@ const Introduction = styled.p`
   font-size: 22px;
   font-weight: 300;
   line-height: 180%;
+
+  ${({ theme }) =>
+    theme.media.mobile(css`
+      font-size: 12px;
+    `)}
 `;
 
 const SNS = styled.div`

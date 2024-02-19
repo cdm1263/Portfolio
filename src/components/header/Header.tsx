@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { header } from "../../lib/variants";
@@ -47,6 +47,11 @@ const Title = styled(motion.h1)`
   font-size: 150px;
   font-weight: 800;
   text-align: center;
+
+  ${({ theme }) =>
+    theme.media.mobile(css`
+      font-size: 80px;
+    `)}
 `;
 
 const Intro = styled(motion.h2)`
