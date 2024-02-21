@@ -1,10 +1,10 @@
 import styled, { css } from "styled-components";
 import { motion } from "framer-motion";
 import { nav, title } from "../../lib/variants";
-import NavLink from "./NavLink";
 import useCalculateInnerWidth from "../../hooks/useCalculateInnerWidth";
 import Sidebar from "./Sidebar";
 import { animateScroll as scroll } from "react-scroll";
+import Links from "./Links";
 
 interface NavBarProps {
   toggleTheme: () => void;
@@ -13,13 +13,15 @@ interface NavBarProps {
 
 const Navbar = ({ toggleTheme, isDarkMode }: NavBarProps) => {
   const innerWidth = useCalculateInnerWidth();
+  const isMobile = innerWidth <= 768;
+  const linkProps = { toggleTheme, isDarkMode };
   const { titleVariant } = title;
   const { mobileNavVariant, navVariant } = nav;
 
   return (
     <Wrapper>
       <Container
-        variants={innerWidth <= 768 ? mobileNavVariant : navVariant}
+        variants={isMobile ? mobileNavVariant : navVariant}
         initial="initial"
         animate="animate"
       >
@@ -33,10 +35,12 @@ const Navbar = ({ toggleTheme, isDarkMode }: NavBarProps) => {
         >
           Dongmin's Portfolio
         </Title>
-        {innerWidth <= 768 ? (
-          <Sidebar toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
+        {isMobile ? (
+          <Sidebar {...linkProps} />
         ) : (
-          <NavLink toggleTheme={toggleTheme} isDarkMode={isDarkMode} />
+          <DesktopLinks>
+            <Links {...linkProps} />
+          </DesktopLinks>
         )}
       </Container>
     </Wrapper>
@@ -85,6 +89,12 @@ const Title = styled(motion.h1)`
     theme.media.mobile(css`
       font-size: 22px;
     `)}
+`;
+
+const DesktopLinks = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
 `;
 
 export default Navbar;
