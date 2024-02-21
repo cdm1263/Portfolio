@@ -3,6 +3,7 @@ import { motion } from "framer-motion";
 import { useState } from "react";
 import Links from "./Links";
 import { sidebar } from "../../lib/variants";
+import { IoMenu } from "react-icons/io5";
 
 interface SidebarProps {
   toggleTheme: () => void;
@@ -17,11 +18,12 @@ const Sidebar = ({ toggleTheme, isDarkMode }: SidebarProps) => {
   return (
     <Wrapper>
       <ToggleSidebar
+        $open={open}
         onClick={() => {
           setOpen((prev) => !prev);
         }}
       >
-        icon
+        <IoMenu />
       </ToggleSidebar>
       <LinkWrapper animate={open ? "open" : "closed"} variants={wrapperVariant}>
         <LinkBackground variants={backgroundVariant}>
@@ -37,26 +39,40 @@ const Wrapper = styled.div`
   display: flex;
 `;
 
-const ToggleSidebar = styled.button`
-  width: 50px;
-  height: 50px;
+const ToggleSidebar = styled.button<{ $open: boolean }>`
+  cursor: pointer;
+  width: 45px;
+  height: 45px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
   border-radius: 50%;
   border: none;
-  background-color: transparent;
-  border: 1px solid ${({ theme }) => theme.colors.text[100]};
+  transition: background-color 0.2s ease;
+  background-color: ${({ $open, theme }) =>
+    $open ? theme.colors.bg[200] : "transparent"};
   color: ${({ theme }) => theme.colors.text[100]};
+
+  &:hover {
+    background-color: ${({ theme }) => theme.colors.bg[200]};
+  }
 `;
 
 const LinkWrapper = styled(motion.div)`
   position: absolute;
   top: 70px;
-  right: -30px;
+  right: -33px;
 `;
 
 const LinkBackground = styled(motion.div)`
   display: flex;
   flex-direction: column;
   align-items: center;
+  border-radius: 15px;
+  padding: 15px 10px;
+  backdrop-filter: blur(30px);
+  box-shadow: 2px 7px 15px 8px rgba(0, 0, 0, 0.3);
 `;
 
 export default Sidebar;
