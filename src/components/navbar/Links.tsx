@@ -15,30 +15,19 @@ interface LinksProps {
 const Links = ({ setOpen, isDarkMode, toggleTheme }: LinksProps) => {
   const innerWidth = useCalculateInnerWidth();
   const isMobile = innerWidth <= 768;
-  const { tap, linkVariant } = link;
+  const { tap, linkVariant, mobileLinkVariant } = link;
   const links = ["About", "Projects", "Contact"];
   const themeToggleProps = isMobile
     ? {}
     : { initial: "initial", animate: "animate" };
   const linkProps = { ...themeToggleProps, whileTap: tap };
 
-  const itemVariants = {
-    open: {
-      y: 0,
-      opacity: 1,
-    },
-    closed: {
-      y: 50,
-      opacity: 0,
-    },
-  };
-
   return (
     <>
       {links.map((link) => (
         <Link
           key={link}
-          variants={isMobile ? itemVariants : linkVariant}
+          variants={isMobile ? mobileLinkVariant : linkVariant}
           {...linkProps}
         >
           <ScrollLink
@@ -55,7 +44,7 @@ const Links = ({ setOpen, isDarkMode, toggleTheme }: LinksProps) => {
       ))}
       <ThemeToggle
         onClick={toggleTheme}
-        variants={isMobile ? itemVariants : linkVariant}
+        variants={isMobile ? mobileLinkVariant : linkVariant}
         {...themeToggleProps}
       >
         <Moon $isDarkMode={isDarkMode} />
