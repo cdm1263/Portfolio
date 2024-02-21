@@ -20,6 +20,16 @@ const link = {
       transition: { opacity: { delay: 1.8 }, y: { duration: 0.5, delay: 1.8 } },
     },
   },
+  mobileLinkVariant: {
+    open: {
+      y: 0,
+      opacity: 1,
+    },
+    closed: {
+      y: 50,
+      opacity: 0,
+    },
+  },
 };
 
 const title = {
@@ -89,4 +99,31 @@ const chevron = {
   },
 };
 
-export { header, link, title, nav, chevron };
+const sidebar = {
+  wrapperVariant: {
+    open: {
+      display: "flex",
+    },
+    closed: {
+      display: "none",
+      transition: {
+        delay: 0.5,
+      },
+    },
+  },
+  backgroundVariant: {
+    open: {
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+    closed: {
+      transition: {
+        staggerChildren: 0.07,
+        staggerDirection: -1,
+      },
+    },
+  },
+};
+
+export { header, link, title, nav, chevron, sidebar };
