@@ -15,21 +15,17 @@ interface LinksProps {
 const Links = ({ setOpen, isDarkMode, toggleTheme }: LinksProps) => {
   const innerWidth = useCalculateInnerWidth();
   const isMobile = innerWidth <= 768;
-  const { tap, linkVariant, mobileLinkVariant } = link;
+  const { tap, mobileLinkVariant } = link;
   const links = ["About", "Projects", "Contact"];
   const themeToggleProps = isMobile
-    ? {}
+    ? { variants: mobileLinkVariant }
     : { initial: "initial", animate: "animate" };
   const linkProps = { ...themeToggleProps, whileTap: tap };
 
   return (
     <>
       {links.map((link) => (
-        <Link
-          key={link}
-          variants={isMobile ? mobileLinkVariant : linkVariant}
-          {...linkProps}
-        >
+        <Link key={link} {...linkProps}>
           <ScrollLink
             to={link.toLowerCase()}
             smooth={true}
@@ -42,11 +38,7 @@ const Links = ({ setOpen, isDarkMode, toggleTheme }: LinksProps) => {
           </ScrollLink>
         </Link>
       ))}
-      <ThemeToggle
-        onClick={toggleTheme}
-        variants={isMobile ? mobileLinkVariant : linkVariant}
-        {...themeToggleProps}
-      >
+      <ThemeToggle onClick={toggleTheme} {...themeToggleProps}>
         <Moon $isDarkMode={isDarkMode} />
         <Sun $isDarkMode={isDarkMode} />
       </ThemeToggle>
@@ -58,6 +50,7 @@ const Link = styled(motion.div)`
   cursor: pointer;
   display: block;
   padding: 15px 20px;
+  border-radius: 10px;
   text-decoration: none;
   color: ${({ theme }) => theme.colors.text[200]};
   font-size: 20px;
@@ -71,13 +64,16 @@ const Link = styled(motion.div)`
 `;
 
 const ThemeToggle = styled(motion.button)`
-  width: 30px;
+  padding: 0 20px;
   height: 50px;
   width: 100%;
   border: none;
   background-color: transparent;
   color: ${({ theme }) => theme.colors.text[200]};
   cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   &:hover {
     color: ${({ theme }) => theme.colors.text[100]};
@@ -91,14 +87,14 @@ const ThemeToggle = styled(motion.button)`
 
 const Moon = styled(IoMoon)<DarkModeTypes>`
   opacity: ${({ $isDarkMode }) => ($isDarkMode ? 0 : 1)};
-  transform: translate(-50%, -50%) scale(2);
+  font-size: 30px;
   transition: opacity 0.2s;
   position: absolute;
 `;
 
 const Sun = styled(IoSunny)<DarkModeTypes>`
   opacity: ${({ $isDarkMode }) => ($isDarkMode ? 1 : 0)};
-  transform: translate(-50%, -50%) scale(2);
+  font-size: 30px;
   transition: opacity 0.3s;
   position: absolute;
 `;
