@@ -56,7 +56,6 @@ const Wrapper = styled.nav`
   width: 95%;
   height: 150px;
   position: fixed;
-  opacity: 0.7;
   z-index: 1;
   font-family: "Flipahaus-V2";
 `;
@@ -70,8 +69,19 @@ const Container = styled(motion.div)`
   max-width: 1200px;
   align-items: center;
   box-sizing: border-box;
-  background-color: ${({ theme }) => theme.colors.bg[300]};
   justify-content: space-between;
+  box-shadow: 2px 7px 15px 8px rgba(0, 0, 0, 0.3);
+  background-color: ${({ theme }) => {
+    const hexToRgba = (hex: string, opacity: number) => {
+      const r = parseInt(hex.slice(1, 3), 16);
+      const g = parseInt(hex.slice(3, 5), 16);
+      const b = parseInt(hex.slice(5, 7), 16);
+
+      return `rgba(${r}, ${g}, ${b}, ${opacity})`;
+    };
+
+    return hexToRgba(theme.colors.bg[300], 0.7);
+  }};
 
   ${({ theme }) =>
     theme.media.mobile(css`
