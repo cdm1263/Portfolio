@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { motion } from "framer-motion";
 import { useState } from "react";
 import Links from "./Links";
+import { sidebar } from "../../lib/variants";
 
 interface SidebarProps {
   toggleTheme: () => void;
@@ -11,32 +12,7 @@ interface SidebarProps {
 const Sidebar = ({ toggleTheme, isDarkMode }: SidebarProps) => {
   const [open, setOpen] = useState<boolean>(false);
   const linkProps = { toggleTheme, isDarkMode, setOpen };
-
-  const variants = {
-    open: {
-      display: "flex",
-    },
-    closed: {
-      display: "none",
-      transition: {
-        delay: 0.5,
-      },
-    },
-  };
-
-  const linkVariants = {
-    open: {
-      transition: {
-        staggerChildren: 0.1,
-      },
-    },
-    closed: {
-      transition: {
-        staggerChildren: 0.07,
-        staggerDirection: -1,
-      },
-    },
-  };
+  const { wrapperVariant, backgroundVariant } = sidebar;
 
   return (
     <Wrapper>
@@ -47,8 +23,8 @@ const Sidebar = ({ toggleTheme, isDarkMode }: SidebarProps) => {
       >
         icon
       </ToggleSidebar>
-      <LinkWrapper animate={open ? "open" : "closed"} variants={variants}>
-        <LinkBackground variants={linkVariants}>
+      <LinkWrapper animate={open ? "open" : "closed"} variants={wrapperVariant}>
+        <LinkBackground variants={backgroundVariant}>
           <Links {...linkProps} />
         </LinkBackground>
       </LinkWrapper>
