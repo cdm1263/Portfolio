@@ -1,6 +1,6 @@
 import styled, { css } from "styled-components";
 import { motion } from "framer-motion";
-import { nav, title } from "../../lib/variants";
+import { nav, title, link } from "../../lib/variants";
 import useCalculateInnerWidth from "../../hooks/useCalculateInnerWidth";
 import Sidebar from "./Sidebar";
 import { animateScroll as scroll } from "react-scroll";
@@ -17,6 +17,7 @@ const Navbar = ({ toggleTheme, isDarkMode }: NavBarProps) => {
   const linkProps = { toggleTheme, isDarkMode };
   const { titleVariant } = title;
   const { mobileNavVariant, navVariant } = nav;
+  const { linkVariant } = link;
 
   return (
     <Wrapper>
@@ -35,13 +36,15 @@ const Navbar = ({ toggleTheme, isDarkMode }: NavBarProps) => {
         >
           Dongmin's Portfolio
         </Title>
-        {isMobile ? (
-          <Sidebar {...linkProps} />
-        ) : (
-          <DesktopLinks>
-            <Links {...linkProps} />
-          </DesktopLinks>
-        )}
+        <motion.div variants={linkVariant}>
+          {isMobile ? (
+            <Sidebar {...linkProps} />
+          ) : (
+            <DesktopLinks>
+              <Links {...linkProps} />
+            </DesktopLinks>
+          )}
+        </motion.div>
       </Container>
     </Wrapper>
   );
