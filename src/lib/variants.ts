@@ -118,7 +118,9 @@ const sidebar = {
       },
     },
     closed: {
+      opacity: 0,
       transition: {
+        opacity: { delay: 0.25, duration: 0.2 },
         staggerChildren: 0.07,
         staggerDirection: -1,
       },
