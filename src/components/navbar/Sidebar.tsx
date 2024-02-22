@@ -1,68 +1,33 @@
 import styled from "styled-components";
 import { motion } from "framer-motion";
-import { useState } from "react";
 import Links from "./Links";
 import { sidebar } from "../../lib/variants";
-import { IoMenu } from "react-icons/io5";
 
 interface SidebarProps {
   toggleTheme: () => void;
   isDarkMode: boolean;
+  open: boolean;
+  setOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const Sidebar = ({ toggleTheme, isDarkMode }: SidebarProps) => {
-  const [open, setOpen] = useState<boolean>(false);
+const Sidebar = ({ toggleTheme, isDarkMode, open, setOpen }: SidebarProps) => {
   const linkProps = { toggleTheme, isDarkMode, setOpen };
   const { wrapperVariant, backgroundVariant } = sidebar;
 
   return (
-    <Wrapper>
-      <ToggleSidebar
-        $open={open}
-        onClick={() => {
-          setOpen((prev) => !prev);
-        }}
-      >
-        <IoMenu />
-      </ToggleSidebar>
-      <LinkWrapper animate={open ? "open" : "closed"} variants={wrapperVariant}>
-        <LinkBackground variants={backgroundVariant}>
-          <Links {...linkProps} />
-        </LinkBackground>
-      </LinkWrapper>
+    <Wrapper animate={open ? "open" : "closed"} variants={wrapperVariant}>
+      <LinkBackground variants={backgroundVariant}>
+        <Links {...linkProps} />
+      </LinkBackground>
     </Wrapper>
   );
 };
 
-const Wrapper = styled.div`
-  position: relative;
-  display: flex;
-`;
-
-const ToggleSidebar = styled.button<{ $open: boolean }>`
-  cursor: pointer;
-  width: 45px;
-  height: 45px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 25px;
-  border-radius: 50%;
-  border: none;
-  transition: background-color 0.2s ease;
-  background-color: ${({ $open, theme }) =>
-    $open ? theme.colors.bg[200] : "transparent"};
-  color: ${({ theme }) => theme.colors.text[100]};
-
-  &:hover {
-    background-color: ${({ theme }) => theme.colors.bg[200]};
-  }
-`;
-
-const LinkWrapper = styled(motion.div)`
+const Wrapper = styled(motion.div)`
   position: absolute;
-  top: 70px;
-  right: -33px;
+  top: 130px;
+  right: 0;
+  display: none;
 `;
 
 const LinkBackground = styled(motion.div)`

@@ -5,6 +5,8 @@ import useCalculateInnerWidth from "../../hooks/useCalculateInnerWidth";
 import Sidebar from "./Sidebar";
 import { animateScroll as scroll } from "react-scroll";
 import Links from "./Links";
+import SidebarToggleButton from "./SidebarToggleButton";
+import { useState } from "react";
 
 interface NavBarProps {
   toggleTheme: () => void;
@@ -12,12 +14,14 @@ interface NavBarProps {
 }
 
 const Navbar = ({ toggleTheme, isDarkMode }: NavBarProps) => {
+  const [open, setOpen] = useState<boolean>(false);
   const innerWidth = useCalculateInnerWidth();
   const isMobile = innerWidth <= 768;
-  const linkProps = { toggleTheme, isDarkMode };
-  const { titleVariant } = title;
   const { mobileNavVariant, navVariant } = nav;
+  const { titleVariant } = title;
   const { linkVariant } = link;
+  const linkProps = { toggleTheme, isDarkMode };
+  const sidebarProps = { open, setOpen };
 
   return (
     <Wrapper>
@@ -38,7 +42,7 @@ const Navbar = ({ toggleTheme, isDarkMode }: NavBarProps) => {
         </Title>
         <motion.div variants={linkVariant}>
           {isMobile ? (
-            <Sidebar {...linkProps} />
+            <SidebarToggleButton {...sidebarProps} />
           ) : (
             <DesktopLinks>
               <Links {...linkProps} />
@@ -46,6 +50,7 @@ const Navbar = ({ toggleTheme, isDarkMode }: NavBarProps) => {
           )}
         </motion.div>
       </Container>
+      {isMobile && <Sidebar {...linkProps} {...sidebarProps} />}
     </Wrapper>
   );
 };
@@ -53,6 +58,7 @@ const Navbar = ({ toggleTheme, isDarkMode }: NavBarProps) => {
 const Wrapper = styled.nav`
   display: flex;
   align-items: center;
+  position: relative;
   width: 95%;
   height: 150px;
   position: fixed;
