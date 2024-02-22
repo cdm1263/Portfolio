@@ -27,6 +27,7 @@ const Wrapper = styled(motion.div)`
   position: absolute;
   top: 130px;
   right: 0;
+  border-radius: 15px;
   display: none;
 `;
 
@@ -36,7 +37,6 @@ const LinkBackground = styled(motion.div)`
   align-items: center;
   border-radius: 15px;
   padding: 15px 10px;
-  backdrop-filter: blur(30px);
   box-shadow: 2px 7px 15px 8px rgba(0, 0, 0, 0.3);
 `;
 

@@ -102,14 +102,13 @@ const chevron = {
 const sidebar = {
   wrapperVariant: {
     open: {
+      backdropFilter: "blur(30px)",
       display: "flex",
     },
     closed: {
       opacity: 0,
       transitionEnd: { display: "none" },
-      transition: {
-        delay: 0.3,
-      },
+      transition: { delay: 0.5 },
     },
   },
   backgroundVariant: {
