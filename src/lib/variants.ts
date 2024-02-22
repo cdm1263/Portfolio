@@ -105,9 +105,10 @@ const sidebar = {
       display: "flex",
     },
     closed: {
-      display: "none",
+      opacity: 0,
+      transitionEnd: { display: "none" },
       transition: {
-        delay: 0.5,
+        delay: 0.3,
       },
     },
   },
