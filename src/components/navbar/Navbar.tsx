@@ -70,6 +70,7 @@ const Container = styled(motion.div)`
   align-items: center;
   box-sizing: border-box;
   justify-content: space-between;
+  backdrop-filter: blur(5px);
   box-shadow: 2px 7px 15px 8px rgba(0, 0, 0, 0.3);
   background-color: ${({ theme }) => {
     const hexToRgba = (hex: string, opacity: number) => {
