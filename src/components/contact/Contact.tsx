@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import InputField from "./InputField";
 
 const Contact = () => {
@@ -40,17 +40,22 @@ const Wrapper = styled.section`
 const Title = styled.h2`
   color: ${({ theme }) => theme.colors.text[100]};
   font-size: 40px;
-  margin-bottom: 20px;
   font-weight: 800;
   text-align: center;
   font-family: "Flipahaus-V2";
 `;
 
 const Container = styled.div`
+  flex: 1;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 20px;
+  gap: 30px;
+
+  ${({ theme }) =>
+    theme.media.mobile(css`
+      flex-direction: column;
+    `)}
 `;
 
 const Intro = styled.div`
@@ -58,17 +63,33 @@ const Intro = styled.div`
   flex: 1;
   height: 100%;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: center;
+
+  ${({ theme }) =>
+    theme.media.mobile(css`
+      justify-content: space-between;
+    `)}
 `;
 
 const ContactInfos = styled.div`
   display: flex;
   gap: 10px;
   flex-direction: column;
+
+  ${({ theme }) =>
+    theme.media.mobile(css`
+      align-items: center;
+    `)}
 `;
 
 const Text = styled.p`
   font-size: 22px;
+  line-height: 120%;
+
+  ${({ theme }) =>
+    theme.media.mobile(css`
+      text-align: center;
+    `)}
 `;
 
 const Info = styled.span``;
@@ -78,6 +99,11 @@ const Form = styled.form`
   display: flex;
   flex-direction: column;
   gap: 20px;
+
+  ${({ theme }) =>
+    theme.media.mobile(css`
+      flex: 2;
+    `)}
 `;
 
 const InputContainer = styled.div`
