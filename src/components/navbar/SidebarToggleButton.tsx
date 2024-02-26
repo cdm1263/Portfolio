@@ -4,11 +4,17 @@ import { IoMenu } from "react-icons/io5";
 interface SidebarToggleButtonProps {
   open: boolean;
   setOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  toggleButtonRef: React.RefObject<HTMLButtonElement>;
 }
 
-const SidebarToggleButton = ({ open, setOpen }: SidebarToggleButtonProps) => {
+const SidebarToggleButton = ({
+  open,
+  setOpen,
+  toggleButtonRef,
+}: SidebarToggleButtonProps) => {
   return (
     <ToggleSidebar
+      ref={toggleButtonRef}
       $open={open}
       onClick={() => {
         setOpen((prev) => !prev);

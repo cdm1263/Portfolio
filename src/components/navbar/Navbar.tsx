@@ -6,7 +6,7 @@ import Sidebar from "./Sidebar";
 import { animateScroll as scroll } from "react-scroll";
 import Links from "./Links";
 import SidebarToggleButton from "./SidebarToggleButton";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface NavBarProps {
   toggleTheme: () => void;
@@ -20,8 +20,29 @@ const Navbar = ({ toggleTheme, isDarkMode }: NavBarProps) => {
   const { mobileNavVariant, navVariant } = nav;
   const { titleVariant } = title;
   const { linkVariant } = link;
+  const sidebarRef = useRef<HTMLDivElement>(null);
+  const toggleButtonRef = useRef<HTMLButtonElement>(null);
   const linkProps = { toggleTheme, isDarkMode };
   const sidebarProps = { open, setOpen };
+
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        sidebarRef.current &&
+        !sidebarRef.current.contains(event.target as Node) &&
+        toggleButtonRef.current &&
+        !toggleButtonRef.current.contains(event.target as Node)
+      ) {
+        setOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [setOpen, sidebarRef, toggleButtonRef]);
 
   return (
     <Wrapper>
@@ -42,7 +63,10 @@ const Navbar = ({ toggleTheme, isDarkMode }: NavBarProps) => {
         </Title>
         <motion.div variants={linkVariant}>
           {isMobile ? (
-            <SidebarToggleButton {...sidebarProps} />
+            <SidebarToggleButton
+              {...sidebarProps}
+              toggleButtonRef={toggleButtonRef}
+            />
           ) : (
             <DesktopLinks>
               <Links {...linkProps} />
@@ -50,7 +74,9 @@ const Navbar = ({ toggleTheme, isDarkMode }: NavBarProps) => {
           )}
         </motion.div>
       </Container>
-      {isMobile && <Sidebar {...linkProps} {...sidebarProps} />}
+      {isMobile && (
+        <Sidebar {...linkProps} {...sidebarProps} sidebarRef={sidebarRef} />
+      )}
     </Wrapper>
   );
 };
