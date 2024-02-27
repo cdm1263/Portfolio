@@ -4,14 +4,16 @@ import Navbar from "./components/navbar/Navbar";
 import Projects from "./components/projects/Projects";
 import Contact from "./components/contact/Contact";
 import Header from "./components/header/Header";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { ThemeProvider } from "styled-components";
 import theme from "./styles/theme.ts";
 import GlobalStyles from "./styles/GlobalStyles.ts";
 import media from "./styles/media.ts";
+import Progressbar from "./components/progressbar/Progressbar.tsx";
 
 const App = () => {
   const storedDarkMode = localStorage.getItem("isDarkMode");
+  const portfolioRef = useRef(null);
   const [isDarkMode, setIsDarkMode] = useState<boolean>(
     storedDarkMode !== null ? JSON.parse(storedDarkMode) : true
   );
@@ -28,7 +30,8 @@ const App = () => {
   return (
     <ThemeProvider theme={{ colors, media }}>
       <GlobalStyles />
-      <Wrapper>
+      <Wrapper ref={portfolioRef}>
+        <Progressbar ref={portfolioRef} />
         <Navbar toggleTheme={toggletheme} isDarkMode={isDarkMode} />
         <Header />
         <About />
