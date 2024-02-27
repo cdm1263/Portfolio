@@ -2,12 +2,12 @@ import { useScroll, useSpring, motion } from "framer-motion";
 import styled from "styled-components";
 
 interface ProgressBarProps {
-  ref: React.MutableRefObject<null>;
+  portfolioRef: React.MutableRefObject<null>;
 }
 
-const Progressbar = ({ ref }: ProgressBarProps) => {
+const Progressbar = ({ portfolioRef }: ProgressBarProps) => {
   const { scrollYProgress } = useScroll({
-    target: ref,
+    target: portfolioRef,
     offset: ["start start", "end end"],
   });
 

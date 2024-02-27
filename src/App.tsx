@@ -31,7 +31,7 @@ const App = () => {
     <ThemeProvider theme={{ colors, media }}>
       <GlobalStyles />
       <Wrapper ref={portfolioRef}>
-        <Progressbar ref={portfolioRef} />
+        <Progressbar portfolioRef={portfolioRef} />
         <Navbar toggleTheme={toggletheme} isDarkMode={isDarkMode} />
         <Header />
         <About />
