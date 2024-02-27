@@ -32,6 +32,7 @@ const ToggleSidebar = styled.button<{ $open: boolean }>`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-right: -10px;
   font-size: 25px;
   border-radius: 50%;
   border: none;
