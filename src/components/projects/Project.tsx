@@ -1,6 +1,7 @@
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { ProjectTypes } from "../../lib/types";
 import { IoCheckmark } from "react-icons/io5";
+import useCalculateInnerWidth from "../../hooks/useCalculateInnerWidth";
 
 interface ProjectProps {
   project: ProjectTypes;
@@ -8,13 +9,14 @@ interface ProjectProps {
 
 const Project = ({ project }: ProjectProps) => {
   const { id, title, term, skills, desc, url, github } = project;
+  const innerWidth = useCalculateInnerWidth();
+  const isMobile = innerWidth <= 768;
 
   return (
     <Wrapper>
-      <ProgressBarArea />
       <Title>{title}</Title>
       <Term>{term}</Term>
-      {id % 2 ? (
+      {id % 2 || isMobile ? (
         <Detail>
           <ImageContainer></ImageContainer>
           <Description>
@@ -103,18 +105,24 @@ const Wrapper = styled.section`
   gap: 20px;
 `;
 
-const ProgressBarArea = styled.div`
-  height: 30px;
-`;
-
 const Title = styled.h1`
   font-size: 45px;
   font-weight: 800;
+
+  ${({ theme }) =>
+    theme.media.mobile(css`
+      font-size: 25px;
+    `)}
 `;
 
 const Term = styled.h2`
   color: ${({ theme }) => theme.colors.text[200]};
   font-size: 25px;
+
+  ${({ theme }) =>
+    theme.media.mobile(css`
+      font-size: 15px;
+    `)}
 `;
 
 const Detail = styled.div`
@@ -122,6 +130,11 @@ const Detail = styled.div`
   flex: 1;
   gap: 30px;
   padding: 20px 0;
+
+  ${({ theme }) =>
+    theme.media.mobile(css`
+      flex-direction: column;
+    `)}
 `;
 
 const ImageContainer = styled.div`
@@ -140,6 +153,11 @@ const DescriptionTop = styled.p`
   font-size: 22px;
   line-height: 130%;
   justify-content: space-between;
+
+  ${({ theme }) =>
+    theme.media.mobile(css`
+      font-size: 18px;
+    `)}
 `;
 
 const StyledHr = styled.hr`
@@ -151,6 +169,11 @@ const DescriptionBottom = styled.div`
   display: flex;
   flex-direction: column;
   gap: 30px;
+
+  ${({ theme }) =>
+    theme.media.mobile(css`
+      gap: 15px;
+    `)}
 `;
 
 const InfoWrapper = styled.div`
@@ -167,6 +190,11 @@ const InfoTitle = styled.h2`
   font-size: 20px;
   gap: 5px;
   letter-spacing: 3px;
+
+  ${({ theme }) =>
+    theme.media.mobile(css`
+      font-size: 15px;
+    `)}
 `;
 
 const InfoContent = styled.h3`
