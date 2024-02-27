@@ -90,6 +90,11 @@ const Wrapper = styled.nav`
   position: fixed;
   z-index: 1;
   font-family: "Flipahaus-V2";
+
+  ${({ theme }) =>
+    theme.media.mobile(css`
+      height: 120px;
+    `)}
 `;
 
 const Container = styled(motion.div)`

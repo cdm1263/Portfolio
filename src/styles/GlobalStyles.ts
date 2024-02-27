@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import { createGlobalStyle, css } from "styled-components";
 
 const GlobalStyles = createGlobalStyle`
 @font-face {
@@ -78,6 +78,12 @@ section {
   margin: auto;
   scroll-snap-align: center;
   overflow: hidden;
+	
+	${({ theme }) =>
+    theme.media.mobile(css`
+      height: calc(100vh - 120px);
+      padding-top: 120px;
+    `)}
 }
 
 textarea {
