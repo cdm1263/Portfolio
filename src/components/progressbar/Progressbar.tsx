@@ -20,6 +20,7 @@ const Progressbar = ({ portfolioRef }: ProgressBarProps) => {
 };
 
 const ProgressBar = styled(motion.div)`
+  z-index: 1;
   position: fixed;
   background-color: ${({ theme }) => theme.colors.text[100]};
   height: 5px;
