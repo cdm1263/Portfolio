@@ -102,6 +102,7 @@ const Form = styled.form`
 
   ${({ theme }) =>
     theme.media.mobile(css`
+      justify-content: center;
       flex: 2;
     `)}
 `;
