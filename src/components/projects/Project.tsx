@@ -2,10 +2,60 @@ import styled, { css } from "styled-components";
 import { ProjectTypes } from "../../lib/types";
 import { IoCheckmark } from "react-icons/io5";
 import useCalculateInnerWidth from "../../hooks/useCalculateInnerWidth";
+import DescriptionSlider from "./DescriptionSlider";
 
 interface ProjectProps {
   project: ProjectTypes;
 }
+
+interface ProjectDevInformation {
+  skills: ProjectTypes["skills"];
+  url: ProjectTypes["url"];
+  github: ProjectTypes["github"];
+}
+
+const ProjectDescription = ({ desc }: { desc: ProjectTypes["desc"] }) => {
+  return <DescriptionTop>{desc}</DescriptionTop>;
+};
+
+const ProjectDevInformation = ({
+  skills,
+  url,
+  github,
+}: ProjectDevInformation) => {
+  return (
+    <DescriptionBottom>
+      <InfoWrapper>
+        <InfoTitle>
+          <IoCheckmark /> Skills
+        </InfoTitle>
+        <InfoContent>
+          {skills.map((skill: string) => (
+            <span key={skill}>{skill}</span>
+          ))}
+        </InfoContent>
+      </InfoWrapper>
+      <InfoWrapper>
+        <InfoTitle>
+          <IoCheckmark />
+          URL
+        </InfoTitle>
+        <InfoContent>
+          <a href={url}>{url}</a>
+        </InfoContent>
+      </InfoWrapper>
+      <InfoWrapper>
+        <InfoTitle>
+          <IoCheckmark />
+          Github
+        </InfoTitle>
+        <InfoContent>
+          <a href={github}>{github}</a>
+        </InfoContent>
+      </InfoWrapper>
+    </DescriptionBottom>
+  );
+};
 
 const Project = ({
   project: { id, title, term, skills, desc, url, github },
@@ -17,80 +67,36 @@ const Project = ({
     <Wrapper>
       <Title>{title}</Title>
       <Term>{term}</Term>
-      {id % 2 || isMobile ? (
+      {isMobile ? (
+        <Detail>
+          <ImageContainer></ImageContainer>
+          <DescriptionSlider
+            projectNo={id}
+            projectInfo={<ProjectDescription desc={desc} />}
+            devInfo={
+              <ProjectDevInformation
+                skills={skills}
+                url={url}
+                github={github}
+              />
+            }
+          />
+        </Detail>
+      ) : id % 2 ? (
         <Detail>
           <ImageContainer></ImageContainer>
           <Description>
-            <DescriptionTop>{desc}</DescriptionTop>
+            <ProjectDescription desc={desc} />
             <StyledHr />
-            <DescriptionBottom>
-              <InfoWrapper>
-                <InfoTitle>
-                  <IoCheckmark /> Skills
-                </InfoTitle>
-                <InfoContent>
-                  {skills.map((skill: string) => (
-                    <span key={skill}>{skill}</span>
-                  ))}
-                </InfoContent>
-              </InfoWrapper>
-              <InfoWrapper>
-                <InfoTitle>
-                  <IoCheckmark />
-                  URL
-                </InfoTitle>
-                <InfoContent>
-                  <a href={url}>{url}</a>
-                </InfoContent>
-              </InfoWrapper>
-              <InfoWrapper>
-                <InfoTitle>
-                  <IoCheckmark />
-                  Github
-                </InfoTitle>
-                <InfoContent>
-                  <a href={github}>{github}</a>
-                </InfoContent>
-              </InfoWrapper>
-            </DescriptionBottom>
+            <ProjectDevInformation skills={skills} url={url} github={github} />
           </Description>
         </Detail>
       ) : (
         <Detail>
           <Description>
-            <DescriptionTop>{desc}</DescriptionTop>
+            <ProjectDescription desc={desc} />
             <StyledHr />
-            <DescriptionBottom>
-              <InfoWrapper>
-                <InfoTitle>
-                  <IoCheckmark />
-                  Skills
-                </InfoTitle>
-                <InfoContent>
-                  {skills.map((skill: string) => (
-                    <span key={skill}>{skill}</span>
-                  ))}
-                </InfoContent>
-              </InfoWrapper>
-              <InfoWrapper>
-                <InfoTitle>
-                  <IoCheckmark />
-                  URL
-                </InfoTitle>
-                <InfoContent>
-                  <a href={url}>{url}</a>
-                </InfoContent>
-              </InfoWrapper>
-              <InfoWrapper>
-                <InfoTitle>
-                  <IoCheckmark />
-                  Github
-                </InfoTitle>
-                <InfoContent>
-                  <a href={github}>{github}</a>
-                </InfoContent>
-              </InfoWrapper>
-            </DescriptionBottom>
+            <ProjectDevInformation skills={skills} url={url} github={github} />
           </Description>
           <ImageContainer></ImageContainer>
         </Detail>
@@ -131,6 +137,7 @@ const Detail = styled.div`
   flex: 1;
   gap: 30px;
   padding: 20px 0;
+  width: 100%;
 
   ${({ theme }) =>
     theme.media.mobile(css`
@@ -149,11 +156,8 @@ const Description = styled.div`
 `;
 
 const DescriptionTop = styled.p`
-  display: flex;
-  flex-direction: column;
   font-size: 22px;
   line-height: 130%;
-  justify-content: space-between;
 
   ${({ theme }) =>
     theme.media.mobile(css`
@@ -205,7 +209,7 @@ const InfoContent = styled.h3`
   flex-wrap: wrap;
 
   a {
-    color: ${({ theme }) => theme.colors.primary[200]};
+    color: ${({ theme }) => theme.colors.text[200]};
   }
 `;
 
