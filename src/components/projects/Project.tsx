@@ -7,8 +7,9 @@ interface ProjectProps {
   project: ProjectTypes;
 }
 
-const Project = ({ project }: ProjectProps) => {
-  const { id, title, term, skills, desc, url, github } = project;
+const Project = ({
+  project: { id, title, term, skills, desc, url, github },
+}: ProjectProps) => {
   const innerWidth = useCalculateInnerWidth();
   const isMobile = innerWidth <= 768;
 
