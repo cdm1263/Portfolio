@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import styled from "styled-components";
 
 interface DescriptionSliderProps {
@@ -12,7 +12,26 @@ const DescriptionSlider = ({
   projectInfo,
   devInfo,
 }: DescriptionSliderProps) => {
-  const [element, setElement] = useState("left");
+  const [element, setElement] = useState<"left" | "right">("left");
+  const [startX, setStartX] = useState<number | null>(null);
+  const [scrollLeft, setScrollLeft] = useState<number>(0);
+  const sliderRef = useRef<HTMLDivElement>(null);
+
+  const handleTouchStart = (e: React.TouchEvent<HTMLDivElement>) => {
+    setStartX(e.touches[0].clientX);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent<HTMLDivElement>) => {
+    if (!startX || !sliderRef.current) return;
+    const x = e.touches[0].clientX - startX;
+    sliderRef.current.scrollLeft = scrollLeft - x;
+  };
+
+  const handleTouchEnd = () => {
+    if (!sliderRef.current) return;
+    setScrollLeft(sliderRef.current.scrollLeft);
+    setStartX(null);
+  };
 
   const scrollToLeft = () => {
     const leftElement = document.getElementById(`${projectNo}_left`);
@@ -32,7 +51,12 @@ const DescriptionSlider = ({
 
   return (
     <Wrapper>
-      <ElementContainer>
+      <ElementContainer
+        ref={sliderRef}
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+      >
         <Element id={`${projectNo}_left`}>{projectInfo}</Element>
         <Element id={`${projectNo}_right`}>{devInfo}</Element>
       </ElementContainer>
@@ -48,7 +72,7 @@ const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 15px;
+  gap: 30px;
 `;
 
 const ElementContainer = styled.div`
