@@ -58,6 +58,7 @@ const IntroContainer = styled.div`
   flex-direction: column;
   gap: 40px;
   white-space: nowrap;
+  width: 60%;
 
   ${({ theme }) =>
     theme.media.mobile(css`
@@ -66,6 +67,7 @@ const IntroContainer = styled.div`
       gap: 20px;
       white-space: normal;
       padding: 20px 0;
+      width: 100%;
     `)}
 `;
 
@@ -78,8 +80,13 @@ const ImageContainer = styled.div`
 `;
 
 const Title = styled.h2`
-  font-size: 50px;
+  font-size: 45px;
   line-height: 140%;
+
+  ${({ theme }) =>
+    theme.media.tablet(css`
+      font-size: 32px;
+    `)}
 
   ${({ theme }) =>
     theme.media.mobile(css`
@@ -97,6 +104,11 @@ const Introduction = styled.p`
   font-size: 22px;
   font-weight: 300;
   line-height: 180%;
+
+  ${({ theme }) =>
+    theme.media.tablet(css`
+      font-size: 19px;
+    `)}
 
   ${({ theme }) =>
     theme.media.mobile(css`
